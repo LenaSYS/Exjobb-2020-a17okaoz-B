@@ -1,22 +1,13 @@
 package com.example.weatherapplication
 
-import android.annotation.SuppressLint
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 import java.net.URL
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.math.roundToInt
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -58,6 +49,9 @@ class MainActivity : AppCompatActivity() {
                 Log.d(main.toString(), "main")
                 Log.d(sys.toString(), "sys")
                 Log.d(weather.toString(), "weather")
+
+                val address = jsonObj.getString("name")+", "+sys.getString("country")
+                findViewById<TextView>(R.id.cityName).text = address
 
             } catch (e: Exception) {
 
