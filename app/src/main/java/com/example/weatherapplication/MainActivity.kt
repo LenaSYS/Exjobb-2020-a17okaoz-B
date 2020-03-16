@@ -1,10 +1,14 @@
 package com.example.weatherapplication
 
+import android.annotation.SuppressLint
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 import java.net.URL
 import java.text.SimpleDateFormat
@@ -20,16 +24,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        getWeather().execute()
+        onClick()
     }
 
-    inner class getWeather() : AsyncTask<String, Void, String>() {
+    private fun onClick(){
+        searchButton.setOnClickListener {
+            weatherTask().execute()
+        }
+    }
+
+    inner class weatherTask() : AsyncTask<String, Void, String>() {
+
         override fun doInBackground(vararg params: String?): String? {
             var response:String?
-            try {
+            try{
                 response = URL("https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=00d7209b7ffda34cbe6e05e6f6746448").readText(Charsets.UTF_8)
-                Log.d(response ,"cityInfo").toString()
-            }catch (e:Exception){
+                Log.d(response, "cityInfo")
+            }catch (e: Exception){
                 response = null
             }
             return response
@@ -44,21 +55,9 @@ class MainActivity : AppCompatActivity() {
                 val sys = jsonObj.getJSONObject("sys")
                 val weather = jsonObj.getJSONArray("weather").getJSONObject(0)
 
-                val city = jsonObj.getString("name")+", "+sys.getString("country")
-                val temp = (main.getInt("temp") - 273.15).roundToInt().toString() + "℃"
-                val desc = weather.getString("description")
-
-                val pattern = "yyyy-MM-dd"
-                val simpleDateFormat = SimpleDateFormat(pattern)
-                val date: String = simpleDateFormat.format(Date())
-
-
-                findViewById<TextView>(R.id.cityName).text = city
-                findViewById<TextView>(R.id.weatherType).text = desc
-                findViewById<TextView>(R.id.temp).text = temp.toString()
-                findViewById<TextView>(R.id.date).text = date
-
-
+                Log.d(main.toString(), "main")
+                Log.d(sys.toString(), "sys")
+                Log.d(weather.toString(), "weather")
 
             } catch (e: Exception) {
 
