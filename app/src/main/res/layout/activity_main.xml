@@ -20,6 +20,7 @@
         android:hint="Enter City..."
         android:inputType="textPersonName"
         android:padding="16px"
+        android:imeOptions="actionSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +52,54 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchButton" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="348dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="183dp"
+        android:layout_marginEnd="183dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cityName" />
+
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="112dp"
+        android:layout_height="121dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="51dp"
+        android:paddingTop="20px"
+        android:textAlignment="center"
+        android:textSize="70sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iconView"
+        app:layout_constraintTop_toBottomOf="@+id/date" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="231dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="149dp"
+        android:layout_marginEnd="177dp"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date" />
+
+    <ImageView
+        android:id="@+id/iconView"
+        android:layout_width="125dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintEnd_toStartOf="@+id/temp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date"
+        app:srcCompat="?attr/selectableItemBackground" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
