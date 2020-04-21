@@ -11,18 +11,29 @@ import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
+import android.util.Log
+import java.util.Calendar
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeUnit.MILLISECONDS
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         onClick()
     }
 
     private fun onClick(){
         searchButton.setOnClickListener {
-            weatherTask().execute()
+            for (x in 0..100) {
+                val start : Long = System.nanoTime()
+
+                weatherTask().execute()
+                val end : Long = System.nanoTime()
+                Log.d(x.toString(), "${(end - start) / 1000000.0} ")
+
+            }
+
         }
     }
 
@@ -33,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             var weather:String?
             try{
                 weather = URL("https://api.openweathermap.org/data/2.5/weather?q=$searchbox&appid=00d7209b7ffda34cbe6e05e6f6746448").readText(Charsets.UTF_8)
+
             }catch (e: Exception){
                 weather = null
             }
