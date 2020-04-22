@@ -2,6 +2,10 @@ package com.example.weatherapplication
 
 import android.os.AsyncTask
 import android.os.Bundle
+import android.os.SystemClock
+import android.os.SystemClock.elapsedRealtime
+import android.os.SystemClock.elapsedRealtimeNanos
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
@@ -11,7 +15,6 @@ import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
-import android.util.Log
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,10 +27,10 @@ class MainActivity : AppCompatActivity() {
     private fun onClick(){
         searchButton.setOnClickListener {
             for (x in 0..100) {
-                val start : Long = System.nanoTime()
+                val start  = elapsedRealtimeNanos()
 
                 weatherTask().execute()
-                val end : Long = System.nanoTime()
+                val end  = elapsedRealtimeNanos()
                 Log.d(x.toString(), "${(end - start) / 1000000.0} ")
 
             }
