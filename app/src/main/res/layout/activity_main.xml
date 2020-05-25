@@ -21,7 +21,6 @@
         android:imeOptions="actionSearch"
         android:inputType="textPersonName"
         android:padding="16px"
-        android:text="Skövde"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
